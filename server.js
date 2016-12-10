@@ -119,7 +119,7 @@ app.get("/articles/:id", function(req, res) {
 
 
 //  POST request to  create a  new comment
-app.post("/articles/:id", function(req, res) {
+app.post('/articles/:id', function(req, res) {
   // create newComment using the req
   var newComment = new Comment(req.body);
 
@@ -130,7 +130,7 @@ app.post("/articles/:id", function(req, res) {
     }
     else {
       // Use Article id to create the comment and tie to the Article
-      Article.findOneAndUpdate({ "_id": req.params.id }, { "comment": doc._id })
+      Article.findOneAndUpdate({ '_id': req.params.id }, { 'comment': doc._id })
       // execute the function
       .exec(function(err, doc) {
         if (err) {
