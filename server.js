@@ -103,7 +103,7 @@ app.get("/articles/:id", function(req, res) {
   // id is passed in the URL parameter,to query the db
   Article.findOne({ "_id": req.params.id })
   // populate any comments tied to that id
-  .populate("Comment")
+  .populate("comment")
   // execute the query function
   .exec(function(error, doc) {
     if (error) {
@@ -118,7 +118,7 @@ app.get("/articles/:id", function(req, res) {
 
 
 
-//  POST request to  createa  new comment
+//  POST request to  create a  new comment
 app.post("/articles/:id", function(req, res) {
   // create newComment using the req
   var newComment = new Comment(req.body);
@@ -130,7 +130,7 @@ app.post("/articles/:id", function(req, res) {
     }
     else {
       // Use Article id to create the comment and tie to the Article
-      Article.findOneAndUpdate({ "_id": req.params.id }, { "Comment": doc._id })
+      Article.findOneAndUpdate({ "_id": req.params.id }, { "comment": doc._id })
       // execute the function
       .exec(function(err, doc) {
         if (err) {
